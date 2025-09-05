@@ -60,6 +60,7 @@ const Contact = () => {
               <h3 className="text-lg font-semibold mb-2">Get Started Today</h3>
               <p className="text-gray-400 text-sm">
                Book your free 30 minute consultation with zero cost, obligation, or pressure.
+                
 We focus only on solutions that make a real difference.
               </p>
             </div>
