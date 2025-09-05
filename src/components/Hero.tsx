@@ -70,8 +70,8 @@ const Hero = () => {
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           <div className="text-center">
-            <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2">500%</div>
-            <div className="text-gray-400">Average ROI Increase</div>
+            <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2">80%</div>
+            <div className="text-gray-400">Task Automated</div>
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2">24/7</div>
