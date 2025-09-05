@@ -59,8 +59,8 @@ const Contact = () => {
             <div className="bg-gradient-to-r from-gray-900 to-gray-800 border border-gray-700 rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-2">Get Started Today</h3>
               <p className="text-gray-400 text-sm">
-                Schedule your free 30 minute consultation call to see how AI automation can improve your business operations. 
-                The call is free of charge, free of obligation, and free of sales pressure. We only suggest solutions when there is a clear benefit to you.
+               Book your free 30 minute consultation with zero cost, zero obligation, and zero pressure.
+We focus only on solutions that make a real difference.
               </p>
             </div>
           </div>
