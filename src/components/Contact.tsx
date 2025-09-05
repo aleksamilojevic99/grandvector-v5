@@ -68,7 +68,7 @@ We focus only on solutions that make a real difference.
           {/* Right Side - Contact Form */}
           <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700 rounded-3xl p-8 backdrop-blur-sm">
             <h3 className="text-2xl font-bold mb-6 text-center">
-              Book Your Demo
+              Book Your Free Consultation
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -129,7 +129,7 @@ We focus only on solutions that make a real difference.
             </form>
 
             <p className="text-center text-gray-400 text-sm mt-4">
-              We'll respond within 2 hours during business hours
+              Expect an instant call from our AI agent to confirm your needs and book your consultation.
             </p>
           </div>
         </div>
