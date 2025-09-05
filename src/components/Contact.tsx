@@ -59,7 +59,7 @@ const Contact = () => {
             <div className="bg-gradient-to-r from-gray-900 to-gray-800 border border-gray-700 rounded-xl p-6">
               <h3 className="text-lg font-semibold mb-2">Get Started Today</h3>
               <p className="text-gray-400 text-sm">
-               Book a free consultation with zero cost, obligation, or pressure.
+               Book a consultation with zero cost, obligation, or pressure.
 We focus only on solutions that make a real difference.
               </p>
             </div>
