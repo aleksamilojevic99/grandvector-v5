@@ -66,8 +66,8 @@ const About = () => {
               Our Mission
             </h3>
             <p className="text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              To empower businesses with AI-driven automation that doesn't just improve efficiency—
-              it fundamentally transforms how companies engage customers, generate leads, and scale operations.
+              To help businesses scale by identifying high-impact areas where automation creates the most value. Whether with AI or simpler tools, we analyze your operations, eliminate repetitive tasks, and implement solutions that free up time, reduce costs, and fuel growth. <br />
+              We guarantee that partnering with us will never cost your business more than operating without us—our solutions always pay for themselves.
             </p>
           </div>
         </div>
