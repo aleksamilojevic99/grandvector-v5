@@ -48,7 +48,7 @@ const Hero = () => {
 
         {/* Subheadline */}
         <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-        Let AI run your business on autopilot, automating every step from first lead to final payment effortlessly.
+        Let your business run on autopilot with AI agents that streamline everything from lead to payment. Start scaling with us today.
         </p>
 
         {/* CTAs */}
