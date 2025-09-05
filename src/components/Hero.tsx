@@ -48,8 +48,7 @@ const Hero = () => {
 
         {/* Subheadline */}
         <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Scale your business with intelligent AI agents that automate customer engagement, 
-          generate infinite qualified leads, and integrate seamlessly across all channels.
+        Let AI run your business on autopilot, automating every step from first lead to final payment effortlessly.
         </p>
 
         {/* CTAs */}
