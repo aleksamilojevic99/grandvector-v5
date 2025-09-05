@@ -6,13 +6,74 @@ const Contact = () => {
     name: '',
     email: '',
     company: '',
+    phone: '',
+    countryCode: '+1',
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const countryCodes = [
+    { code: '+1', country: 'US/CA' },
+    { code: '+44', country: 'UK' },
+    { code: '+49', country: 'DE' },
+    { code: '+33', country: 'FR' },
+    { code: '+39', country: 'IT' },
+    { code: '+34', country: 'ES' },
+    { code: '+31', country: 'NL' },
+    { code: '+41', country: 'CH' },
+    { code: '+43', country: 'AT' },
+    { code: '+32', country: 'BE' },
+    { code: '+61', country: 'AU' },
+    { code: '+64', country: 'NZ' },
+    { code: '+81', country: 'JP' },
+    { code: '+82', country: 'KR' },
+    { code: '+86', country: 'CN' },
+    { code: '+91', country: 'IN' },
+    { code: '+55', country: 'BR' },
+    { code: '+52', country: 'MX' },
+    { code: '+27', country: 'ZA' },
+    { code: '+971', country: 'AE' }
+  ];
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('https://hook.eu2.make.com/97gy5mnt901kn624ohcfrwqqrduwd5vn', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          fullPhone: `${formData.countryCode}${formData.phone}`,
+          timestamp: new Date().toISOString()
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          countryCode: '+1',
+          message: ''
+        });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -71,6 +132,21 @@ We focus only on solutions that make a real difference.
               Book Your Free Consultation
             </h3>
 
+            {submitStatus === 'success' && (
+              <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-4 mb-6">
+                <p className="text-green-400 text-center">
+                  Thank you! We'll contact you shortly to schedule your consultation.
+                </p>
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 mb-6">
+                <p className="text-red-400 text-center">
+                  Something went wrong. Please try again or contact us directly.
+                </p>
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <input
@@ -81,6 +157,7 @@ We focus only on solutions that make a real difference.
                   onChange={handleChange}
                   className="w-full bg-gray-800/50 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -93,6 +170,7 @@ We focus only on solutions that make a real difference.
                   onChange={handleChange}
                   className="w-full bg-gray-800/50 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -105,9 +183,35 @@ We focus only on solutions that make a real difference.
                   onChange={handleChange}
                   className="w-full bg-gray-800/50 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
+              <div className="flex gap-3">
+                <select
+                  name="countryCode"
+                  value={formData.countryCode}
+                  onChange={handleChange}
+                  className="bg-gray-800/50 border border-gray-600 rounded-xl px-4 py-3 text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
+                  disabled={isSubmitting}
+                >
+                  {countryCodes.map((country) => (
+                    <option key={country.code} value={country.code} className="bg-gray-800">
+                      {country.code} ({country.country})
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="flex-1 bg-gray-800/50 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300"
+                  required
+                  disabled={isSubmitting}
+                />
+              </div>
               <div>
                 <textarea
                   name="message"
@@ -116,15 +220,26 @@ We focus only on solutions that make a real difference.
                   value={formData.message}
                   onChange={handleChange}
                   className="w-full bg-gray-800/50 border border-gray-600 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition-all duration-300 resize-none"
+                  disabled={isSubmitting}
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center justify-center gap-2 group"
+                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                disabled={isSubmitting}
               >
-                Schedule Free Consultation
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    Schedule Free Consultation
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </button>
             </form>
 
