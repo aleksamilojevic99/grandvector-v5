@@ -68,12 +68,15 @@ const Contact = () => {
           message: ''
         });
       } else {
-        console.error('Response not ok:', response.status, response.statusText);
+        if (response.status === 410) {
+          console.error('Webhook endpoint is no longer available (410 Gone). Please update the webhook URL.');
+        } else {
+          console.error('Response not ok:', response.status, response.statusText);
+        }
         setSubmitStatus('error');
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      console.error('This might be a CORS issue. Please check if the webhook URL is correct and allows cross-origin requests.');
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
