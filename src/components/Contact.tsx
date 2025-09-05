@@ -47,7 +47,9 @@ const Contact = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
+        mode: 'cors',
         body: JSON.stringify({
           ...formData,
           fullPhone: `${formData.countryCode}${formData.phone}`,
@@ -66,10 +68,12 @@ const Contact = () => {
           message: ''
         });
       } else {
+        console.error('Response not ok:', response.status, response.statusText);
         setSubmitStatus('error');
       }
     } catch (error) {
       console.error('Form submission error:', error);
+      console.error('This might be a CORS issue. Please check if the webhook URL is correct and allows cross-origin requests.');
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
